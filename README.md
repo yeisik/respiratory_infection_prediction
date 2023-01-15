@@ -16,8 +16,14 @@ python run_AF.py --SC 1 --algorithm LR --uptoTimePoint 0
 - - "2", Predict symptomatic response to exposure. Binary outcome.
 - - "3", Continuous value prediction of symptom score after exposure. Continous outcome.
 
-- --uptoTimePoint, The time point to be predicted. 0 for Phase 1 and 24 for Phase 3. Other time points are also supported.
-- --algorithm, Classification and Regression algorithms to be used. 'LR', 'SVM', 'KNN', 'RF', 'XGB' should be selected for SC-1 and SC-2. 'Lasso','ElasticNet','LinearSVR','KNNR','BayesRidge','Ridge','GradientR','DTreeR','XGBR' are Regressor for SC-3 . 
+- --uptoTimePoint, The time point to be predicted. 
+- - 0 for Phase 1
+- - 24 for Phase 3
+- - Other time points are also supported. (i.e. if set "4", than models will be predicted up to 4.th hour).
+
+- --algorithm, Classification and Regression algorithms to be used. 
+- - 'LR', 'SVM', 'KNN', 'RF', 'XGB' should be selected for SC-1 and SC-2.
+- - 'Lasso','ElasticNet','LinearSVR','KNNR','BayesRidge','Ridge','GradientR','DTreeR','XGBR' are Regressor for SC-3 . 
 
 #### Other Options
 - --useVM, VirusMerge option. If True, samples from different experiment but same viruses will be merged to extend number of traning data.

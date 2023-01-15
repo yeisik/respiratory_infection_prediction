@@ -35,9 +35,9 @@ python run_AF.py --SC 1 --algorithm LR --uptoTimePoint 0
 - - - Please choice LR,KNN or XGB for SC-1 and SC-2. 
 - - - For SC-3 Lasso, ElasticNet or GradientR should be selected.
 
-- --useHyperParameters, If True, models will use pre-optimized hyper-parameters for each algorithm/experiment and timepoint. Hyperparameters are stored in ".optimum" files under the folder "optimum_hyperparams". According approach (AF,STPE, AF_VM, STPE_VM, AF_FS or AF_STPE) optimum hyper-parameters will be applied automatically during training process. This options not apply "hyper-parameter optimization". Its only for to use pre-optimized parameters.
+- --useHyperParameters, If True, models will use pre-optimized hyper-parameters for each algorithm/experiment and timepoint. Hyperparameters are stored in ".optimum" files under the folder "optimum_hyperparams". According approach (AF,STPE, AF_VM, STPE_VM, AF_FS or AF_STPE) optimum hyper-parameters will be applied automatically during training process. This options not apply "hyper-parameter optimization". Its only for to use pre-optimized parameters. To apply hyper-parameter optimization from 	scratch, plaese use `--useHyperParameters` option.
 
-- --useHyperParameters, If True, models will apply hyper-parameter optimization on the traning samples using `paramaterOptimizerClassification.py` and `paramaterOptimizerRegression.py` scripts.
+- --useHyperParameters, If True, models will apply hyper-parameter optimization before the training process on traning data using `paramaterOptimizerClassification.py` and `paramaterOptimizerRegression.py` scripts. This options not apply "hyper-parameter optimization".  
 
 
 

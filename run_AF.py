@@ -185,7 +185,7 @@ def applySelectedFeatures(trainInputs,testInputs,expName,sc,timePoint,_mode,fs_m
 
 # Depending on Input argument use algorithms:
 def getAlgorithm(algorithm):
-    _algorithms = {"LR":LR(),"SVM":SVC(),"RF":RF(),"KNN":KNN(),"XGB":XGB(),"Lasso":Lasso(),"ElasticNet":ElasticNet(),"LinearSVR":LinearSVR(),"KNNR":KNeighborsRegressor(),"BayesRidge":BayesianRidge(),"Ridge":Ridge(),"GradientR":GradientBoostingRegressor(),"DTreeR":DecisionTreeRegressor(),"XGBR":XGBRegressor()}
+    _algorithms = {"LR":LR(),"SVM":SVC(probability=True),"RF":RF(),"KNN":KNN(),"XGB":XGB(),"Lasso":Lasso(),"ElasticNet":ElasticNet(),"LinearSVR":LinearSVR(),"KNNR":KNeighborsRegressor(),"BayesRidge":BayesianRidge(),"Ridge":Ridge(),"GradientR":GradientBoostingRegressor(),"DTreeR":DecisionTreeRegressor(),"XGBR":XGBRegressor()}
 
     return _algorithms[algorithm]
 

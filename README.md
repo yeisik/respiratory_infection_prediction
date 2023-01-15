@@ -12,7 +12,9 @@ python run_AF.py --SC 1 --algorithm LR --uptoTimePoint 0
 
 #### General Options
 - --SC, Subchallenges of Respiratory DREAM Viral Challenge. 
-- - 1 for prediction of individuals showing viral shedding, i.e., whether individual is infected or not.
+- - "1", Prediction of individuals showing viral shedding, i.e., whether individual is infected or not. Binary outcome.
+- - "2", Predict symptomatic response to exposure. Binary outcome.
+- - "3", Continuous value prediction of symptom score after exposure. Continous outcome.
 
 
 

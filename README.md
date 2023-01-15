@@ -3,7 +3,7 @@
 ## Usage of Scripts
 
 ```bash
-python run_STPE.py --SC 1 --algorithm LR --uptoTimePoint 0
+python run_STP.py --SC 1 --algorithm LR --uptoTimePoint 0
 ```
 
 ```bash

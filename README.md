@@ -37,5 +37,7 @@ python run_AF.py --SC 1 --algorithm LR --uptoTimePoint 0
 
 - --useHyperParameters, If True, models will use pre-optimized hyper-parameters for each algorithm/experiment and timepoint. Hyperparameters are stored in ".optimum" files under the folder "optimum_hyperparams". According approach (AF,STPE, AF_VM, STPE_VM, AF_FS or AF_STPE) optimum hyper-parameters will be applied automatically during training process. This options not apply "hyper-parameter optimization". Its only for to use pre-optimized parameters.
 
+- --useHyperParameters, If True, models will apply hyper-parameter optimization on the traning samples using `paramaterOptimizerClassification.py` and `paramaterOptimizerRegression.py` scripts.
+
 
 

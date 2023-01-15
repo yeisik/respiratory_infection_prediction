@@ -2,10 +2,12 @@
 
 ## Usage of Scripts
 
+To run Average of Features(AF) approach use:
 ```bash
 python run_STP.py --SC 1 --algorithm LR --uptoTimePoint 0
 ```
 
+To run Single TimePoint and Experiment(STPE) approach use:
 ```bash
 python run_AF.py --SC 1 --algorithm LR --uptoTimePoint 0
 ```

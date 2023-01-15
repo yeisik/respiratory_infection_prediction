@@ -345,18 +345,6 @@ def more_main():
     args = parse_args()
     main(parse_args())
 
-    """_list = []
-    kk = np.loadtxt("setA").astype(int)
-    for i in kk[:50]:
-        np.random.seed(i)
-        pscore = main(parse_args())
-        if pscore>0.59:
-            _list.append([i,pscore])
-    _list.sort(key=lambda x:x[0])
-    for j in _list:
-        print(j[0],j[1])
-    np.savetxt("setB",_list)"""
-
 
 if __name__ == "__main__":
     more_main()

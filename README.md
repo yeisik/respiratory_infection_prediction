@@ -1,10 +1,15 @@
-# STPE & AF Approaches for Respiratory Infection Prediction
-
-Approaches for Respiratory Infection Prediction
+# Scripts of STPE & AF Approaches for Respiratory Infection Prediction
 
 ## Usage for STPE
 
+```bash
+python run_STPE.py --SC 1 --algorithm LR --uptoTimePoint 0
 ```
-python run_STPE.py --SC 1 --algorithm LR --uptoTimePoint 0 --useHyperParameters True --useSelectedFeatures True --fs_method f_regression --fs_wrapper Lasso
+
+
+```bash
+python run_AF.py --SC 1 --algorithm LR --uptoTimePoint 0
 ```
+
+
 

@@ -188,7 +188,7 @@ def applySelectedFeatures(trainInputs,testInputs,expName,sc,timePoint,_mode,fs_m
 
 # Depending on Input argument use algorithms:
 def getAlgorithm(algorithm):
-    _algorithms = {"LR":LR(),"SVM":SVC(),"RF":RF(),"KNN":KNN(),"XGB":XGB(),"Lasso":Lasso(),"ElasticNet":ElasticNet(),"LinearSVR":LinearSVR(),"KNNR":KNeighborsRegressor(),"BayesRidge":BayesianRidge(),"Ridge":Ridge(),"GradientR":GradientBoostingRegressor(),"DTreeR":DecisionTreeRegressor(),"XGBR":XGBRegressor()}
+    _algorithms = {"LR":LR(),"SVM":SVC(probability=True),"RF":RF(),"KNN":KNN(),"XGB":XGB(),"Lasso":Lasso(),"ElasticNet":ElasticNet(),"LinearSVR":LinearSVR(),"KNNR":KNeighborsRegressor(),"BayesRidge":BayesianRidge(),"Ridge":Ridge(),"GradientR":GradientBoostingRegressor(),"DTreeR":DecisionTreeRegressor(),"XGBR":XGBRegressor()}
 
     return _algorithms[algorithm]
 
@@ -258,6 +258,11 @@ def main(args):
     # Get Experiments where test samples are avaiable.
     experiments = checkTestingExperiments(_datasetPath)
     experiments.sort()
+
+    # GINI INDEX, mRMR and CHI-SQUARE features and optimum parameter will be updated
+    #
+    if args.fs_method in ['gini_index','reliefF','mRMR']:
+        raise Exception("GINI INDEX, mRMR and CHI-SQUARE features and optimum parameter will be updated.")
 
     print("Avaiable testing samples for only {}".format(', '.join(experiments)))
     print()
@@ -352,7 +357,6 @@ def main(args):
 def more_main():
     args = parse_args()
     main(parse_args())
-    
 
 if __name__ == "__main__":
     more_main()

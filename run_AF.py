@@ -40,7 +40,7 @@ from paramaterOptimizerClassification import ParamaterOpt as OP_classification
 #ignore all warnings
 import warnings
 warnings.filterwarnings('ignore') 
-np.random.seed(1064)
+np.random.seed(55)
 
 _datasetPath = "datasets"
 experimentList = ['ALL','DEE1_RSV',  'DEE2_H3N2',  'DEE3_H1N1',  'DEE4X_H1N1',  'DEE5_H3N2',  'DUKE_HRV',  'UVA_HRV']
@@ -265,6 +265,11 @@ def main(args):
     actual_labels = []
     subjects = []
 
+    # GINI INDEX, mRMR and CHI-SQUARE features and optimum parameter will be updated
+    #
+    if args.fs_method in ['gini_index','reliefF','mRMR']:
+        raise Exception("GINI INDEX, mRMR and CHI-SQUARE features and optimum parameter will be updated.")
+
     for expName in experiments:
         
         #timePoints = getPhaseTimePoints(expName,uptoTimePoint)
@@ -344,6 +349,7 @@ def main(args):
 def more_main():
     args = parse_args()
     main(parse_args())
+
 
 
 if __name__ == "__main__":

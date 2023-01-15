@@ -40,4 +40,11 @@ python run_AF.py --SC 1 --algorithm LR --uptoTimePoint 0
 - --useHyperParameters, If True, models will apply hyper-parameter optimization before the training process on traning data using `paramaterOptimizerClassification.py` and `paramaterOptimizerRegression.py` scripts. This options not apply "hyper-parameter optimization".  
 
 
+## Examples
+
+Prediction for SC1 and TimePoint 0 (Phase 1) using LR algorithm with STPE Approach and VirusMerge option.
+```bash
+python run_STP.py --SC 1 --algorithm LR --uptoTimePoint 0 --useVM True
+```
+![SC1_P1](https://github.com/yeisik/respiratory_infection_prediction/blob/main/images/sc1_p1.png)
 

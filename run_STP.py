@@ -38,7 +38,7 @@ from paramaterOptimizerClassification import ParamaterOpt as OP_classification
 #ignore all warnings
 import warnings
 warnings.filterwarnings('ignore')
-np.random.seed(1064)
+np.random.seed(2189)
 
 _datasetPath = "datasets"
 experimentList = ['ALL','DEE1_RSV',  'DEE2_H3N2',  'DEE3_H1N1',  'DEE4X_H1N1',  'DEE5_H3N2',  'DUKE_HRV',  'UVA_HRV']
@@ -171,7 +171,10 @@ def getTrainTestData(expName,sc,timepoint):
 def applySelectedFeatures(trainInputs,testInputs,expName,sc,timePoint,_mode,fs_method,fs_wrapper):
 
     _filename = _mode + ".selectedfeatures"
+    #print(_filename,expName,sc,timePoint,_mode,fs_method,fs_wrapper)
     params = pd.read_csv("selected_features/" + _filename,delimiter=";").astype(str)
+
+
     optimal = params.loc[(params['Experiment'] == expName) & (params['SubChallenge'] == "SC"+sc) & (params['TimePoint']==timePoint) & (params['FSMethod']==fs_method) & (params['Wrapper']==fs_wrapper) & (params['Approach']==_mode)]['SelectedFetures'].values[0]
 
     selectedfeatures = ast.literal_eval(optimal)
@@ -233,6 +236,10 @@ def parse_args():
                     help='Wrapper algorithm for Feature selection method. Please choice LR,KNN or XGB for SC-1 and SC-2. For SC-3 Lasso, ElasticNet or GradientR'
                     , required=False, default='False' , choices=['LR','KNN','XGB','Lasso','ElasticNet','GradientR'])
 
+    #parser.add_argument('--seed')
+    #parser.add_argument('--value')
+    #parser.add_argument('--savename')
+
     #parser.add_argument('--experiment',help='prediction up to T.0 hour or T.24 hour (i.e. Phase 1 or Phase)', required=False, default='ALL' , choices=experimentList)
 
     #return inputs
@@ -246,7 +253,7 @@ def main(args):
 
     if args.useVM == 'True':
         _mode =_mode + "_VM"
-    if args.useSelectedFeatures:
+    if args.useSelectedFeatures == 'True':
         _mode =_mode + "_FS"
 
     # Get Algorithm
@@ -257,12 +264,12 @@ def main(args):
 
     # Get Experiments where test samples are avaiable.
     experiments = checkTestingExperiments(_datasetPath)
-    experiments.sort()
+    #experiments.sort()
 
     # GINI INDEX, mRMR and CHI-SQUARE features and optimum parameter will be updated
     #
-    if args.fs_method in ['gini_index','reliefF','mRMR']:
-        raise Exception("GINI INDEX, mRMR and CHI-SQUARE features and optimum parameter will be updated.")
+    #if args.fs_method in ['gini_index','reliefF','mRMR']:
+    #    raise Exception("GINI INDEX, mRMR and CHI-SQUARE features and optimum parameter will be updated.")
 
     print("Avaiable testing samples for only {}".format(', '.join(experiments)))
     print()
@@ -331,7 +338,7 @@ def main(args):
       
         pscore = pearsonr(actual_labels,predictions)[0]
         mse = mean_squared_error(actual_labels,predictions)
-
+        print("Pearson : ",pscore)
         print(averageProbabilities)
         print()
         print("Pearson : ",pscore)
@@ -347,6 +354,8 @@ def main(args):
         precision, recall, thresholds = precision_recall_curve(actual_labels, predictions[:, 1])
         skauprc = auc(recall, precision)
         skauroc = roc_auc_score(actual_labels, predictions[:, 1])
+        print("AUPRC :",skauprc)
+
         print(averageProbabilities)
         print()
         print("AUPRC :",skauprc)
@@ -357,6 +366,7 @@ def main(args):
 def more_main():
     args = parse_args()
     main(parse_args())
+    
 
 if __name__ == "__main__":
     more_main()

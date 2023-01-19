@@ -6,7 +6,7 @@ import numpy as np
 import pandas as pd
 import json
 import ast
-
+import sys
 
 # SKLEARN VERSION : '1.1.1'
 # CLASSIFIERS
@@ -40,7 +40,7 @@ from paramaterOptimizerClassification import ParamaterOpt as OP_classification
 #ignore all warnings
 import warnings
 warnings.filterwarnings('ignore') 
-np.random.seed(55)
+np.random.seed(2189)
 
 _datasetPath = "datasets"
 experimentList = ['ALL','DEE1_RSV',  'DEE2_H3N2',  'DEE3_H1N1',  'DEE4X_H1N1',  'DEE5_H3N2',  'DUKE_HRV',  'UVA_HRV']
@@ -228,7 +228,7 @@ def parse_args():
     parser.add_argument('--fs_wrapper',
                     help='Wrapper algorithm for Feature selection method. Please choice LR,KNN or XGB for SC-1 and SC-2. For SC-3 Lasso, ElasticNet or GradientR'
                     , required=False, default='False' , choices=['LR','KNN','XGB','Lasso','ElasticNet','GradientR'])
-
+    
     #parser.add_argument('--experiment',                        help='prediction up to T.0 hour or T.24 hour (i.e. Phase 1 or Phase)', required=False, default='ALL' , choices=experimentList)
 
     #return inputs
@@ -267,8 +267,8 @@ def main(args):
 
     # GINI INDEX, mRMR and CHI-SQUARE features and optimum parameter will be updated
     #
-    if args.fs_method in ['gini_index','reliefF','mRMR']:
-        raise Exception("GINI INDEX, mRMR and CHI-SQUARE features and optimum parameter will be updated.")
+    #if args.fs_method in ['gini_index','reliefF','mRMR']:
+    #    raise Exception("GINI INDEX, mRMR and CHI-SQUARE features and optimum parameter will be updated.")
 
     for expName in experiments:
         
@@ -329,7 +329,6 @@ def main(args):
         print(averageofFeatures)
         pscore = pearsonr(actual_labels,predictions)[0]
         mse = mean_squared_error(actual_labels,predictions)
-        
 
         print()
         print("Pearson : ",pscore)
@@ -341,6 +340,8 @@ def main(args):
         precision, recall, thresholds = precision_recall_curve(actual_labels, predictions[:, 1])
         skauprc = auc(recall, precision)
         skauroc = roc_auc_score(actual_labels, predictions[:, 1])
+
+       
         print()
         print("AUPRC :",skauprc)
         print("AUROC :",skauroc)
@@ -349,7 +350,6 @@ def main(args):
 def more_main():
     args = parse_args()
     main(parse_args())
-
 
 
 if __name__ == "__main__":

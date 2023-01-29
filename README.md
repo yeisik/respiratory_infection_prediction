@@ -71,5 +71,5 @@ python run_AF.py --SC 2 --algorithm LR --uptoTimePoint 24
 ```bash
 python run_STP.py --SC 1 --algorithm KNN --uptoTimePoint 24 --useSelectedFeatures True --fs_method fisher_score --fs_wrapper XGB
 ```
-![SC2_P3_fisherscore](https://github.com/yeisik/respiratory_infection_prediction/blob/main/images/sc1_p3_fisher.png)
+![SC2_P3_fisherscore](https://github.com/yeisik/respiratory_infection_prediction/blob/main/images/sc1_p3_gini.png)
 

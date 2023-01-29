@@ -38,9 +38,9 @@ from paramaterOptimizerClassification import ParamaterOpt as OP_classification
 #ignore all warnings
 import warnings
 warnings.filterwarnings('ignore')
-np.random.seed(2189)
 
-_datasetPath = "datasets"
+
+_datasetPath = "datasets/"
 experimentList = ['ALL','DEE1_RSV',  'DEE2_H3N2',  'DEE3_H1N1',  'DEE4X_H1N1',  'DEE5_H3N2',  'DUKE_HRV',  'UVA_HRV']
 
 # Check testing samples avaiable or not. If not, dont perform prediction:
@@ -236,13 +236,8 @@ def parse_args():
                     help='Wrapper algorithm for Feature selection method. Please choice LR,KNN or XGB for SC-1 and SC-2. For SC-3 Lasso, ElasticNet or GradientR'
                     , required=False, default='False' , choices=['LR','KNN','XGB','Lasso','ElasticNet','GradientR'])
 
-    #parser.add_argument('--seed')
-    #parser.add_argument('--value')
-    #parser.add_argument('--savename')
-
     #parser.add_argument('--experiment',help='prediction up to T.0 hour or T.24 hour (i.e. Phase 1 or Phase)', required=False, default='ALL' , choices=experimentList)
 
-    #return inputs
     args = parser.parse_args()
     return args
 
@@ -264,12 +259,7 @@ def main(args):
 
     # Get Experiments where test samples are avaiable.
     experiments = checkTestingExperiments(_datasetPath)
-    #experiments.sort()
-
-    # GINI INDEX, mRMR and CHI-SQUARE features and optimum parameter will be updated
-    #
-    #if args.fs_method in ['gini_index','reliefF','mRMR']:
-    #    raise Exception("GINI INDEX, mRMR and CHI-SQUARE features and optimum parameter will be updated.")
+    experiments.sort()
 
     print("Avaiable testing samples for only {}".format(', '.join(experiments)))
     print()
@@ -338,7 +328,6 @@ def main(args):
       
         pscore = pearsonr(actual_labels,predictions)[0]
         mse = mean_squared_error(actual_labels,predictions)
-        print("Pearson : ",pscore)
         print(averageProbabilities)
         print()
         print("Pearson : ",pscore)
@@ -354,7 +343,6 @@ def main(args):
         precision, recall, thresholds = precision_recall_curve(actual_labels, predictions[:, 1])
         skauprc = auc(recall, precision)
         skauroc = roc_auc_score(actual_labels, predictions[:, 1])
-        print("AUPRC :",skauprc)
 
         print(averageProbabilities)
         print()
@@ -366,6 +354,8 @@ def main(args):
 def more_main():
     args = parse_args()
     main(parse_args())
+    
+
     
 
 if __name__ == "__main__":

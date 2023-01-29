@@ -37,12 +37,13 @@ from paramaterOptimizerClassification import ParamaterOpt as OP_classification
 
 
 
+
+
 #ignore all warnings
 import warnings
 warnings.filterwarnings('ignore') 
-np.random.seed(2189)
 
-_datasetPath = "datasets"
+_datasetPath = "datasets/"
 experimentList = ['ALL','DEE1_RSV',  'DEE2_H3N2',  'DEE3_H1N1',  'DEE4X_H1N1',  'DEE5_H3N2',  'DUKE_HRV',  'UVA_HRV']
 
 # Check testing samples avaiable or not. If not, dont perform prediction:
@@ -90,9 +91,6 @@ def getTrainTestDataForVMApproach(expName,sc,uptoTimePoint):
     
     for experiment in experimentsToBeMerged:
         timepoints = getPhaseTimePoints(experiment,uptoTimePoint)
-
-       
-        
 
         for timepoint in timepoints:
 
@@ -245,12 +243,11 @@ def main(args):
     _mode = "AF"
     if args.useVM == 'True':
         _mode =_mode + "_VM"
-    if args.useSelectedFeatures:
+    if args.useSelectedFeatures == 'True':
         _mode =_mode + "_FS"
 
     # Get Experiments where test samples are avaiable.
     experiments = checkTestingExperiments(_datasetPath)
-    experiments.sort()
     
     print("Avaiable testing samples for only {}".format(', '.join(experiments)))
     print()
@@ -265,15 +262,8 @@ def main(args):
     actual_labels = []
     subjects = []
 
-    # GINI INDEX, mRMR and CHI-SQUARE features and optimum parameter will be updated
-    #
-    #if args.fs_method in ['gini_index','reliefF','mRMR']:
-    #    raise Exception("GINI INDEX, mRMR and CHI-SQUARE features and optimum parameter will be updated.")
-
     for expName in experiments:
         
-        #timePoints = getPhaseTimePoints(expName,uptoTimePoint)
-
         if args.useVM == 'True':
             trainSubjects, trainInputs, trainTargets, testSubjects, testInputs, testTargets = getTrainTestDataForVMApproach(expName,sc,uptoTimePoint)
         else:
@@ -350,7 +340,6 @@ def main(args):
 def more_main():
     args = parse_args()
     main(parse_args())
-
 
 if __name__ == "__main__":
     more_main()

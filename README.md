@@ -1,5 +1,15 @@
 # Scripts of STPE & AF Approaches for Respiratory Infection Prediction
 
+## Re-generation of Dataset from GSE73072
+- Download RAW Files (MicroArray data, .CEL files) from https://www.ncbi.nlm.nih.gov/geo/query/acc.cgi?acc=GSE73072
+- Extract All `.CEL` in a folder
+- Read Micro Array Data using `Affy` library from Bioconductor with `hgu133a2cdf` cdf file (see `celread.r`)
+- `CDF` file will convert the data to probe-based representation
+- Perform RMA normalization on all `.CEL` files
+- Save Expression file
+- Filter Each Experiment and Time Point using Sample information on GSE73072
+- Determine Train and Test sample
+
 ## Usage of Scripts
 
 To run Average of Features(AF) approach use:

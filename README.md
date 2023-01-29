@@ -58,18 +58,18 @@ python run_AF.py --SC 1 --algorithm LR --uptoTimePoint 0
 ```bash
 python run_STP.py --SC 1 --algorithm LR --uptoTimePoint 0 --useVM True
 ```
-![SC1_P1](https://github.com/yeisik/respiratory_infection_prediction/blob/main/images/sc1_p1.png)
+![SC1_P1](https://github.com/yeisik/respiratory_infection_prediction/blob/main/images/sc1_p1_v2.png)
 
 
 2. Prediction for SC2 and TimePoint 24 (Phase 3) using LR algorithm with AF Approach.
 ```bash
 python run_AF.py --SC 2 --algorithm LR --uptoTimePoint 24
 ```
-![SC2_P3](https://github.com/yeisik/respiratory_infection_prediction/blob/main/images/sc2_p3.png)
+![SC2_P3](https://github.com/yeisik/respiratory_infection_prediction/blob/main/images/sc2_p3_v2.png)
 
 3. Prediction for SC1 and TimePoint 24 (Phase 3) using KNN algorithm with STPE Approach. Use features selected by gini index selection method with KNN Wrapper.
 ```bash
 python run_STP.py --SC 1 --algorithm KNN --uptoTimePoint 24 --useSelectedFeatures True --fs_method fisher_score --fs_wrapper XGB
 ```
-![SC2_P3_fisherscore](https://github.com/yeisik/respiratory_infection_prediction/blob/main/images/sc1_p3_gini.png)
+![SC2_P3_fisherscore](https://github.com/yeisik/respiratory_infection_prediction/blob/main/images/sc1_p3_v2_gini.png)
 

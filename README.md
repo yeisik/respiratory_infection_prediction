@@ -67,14 +67,9 @@ python run_AF.py --SC 2 --algorithm LR --uptoTimePoint 24
 ```
 ![SC2_P3](https://github.com/yeisik/respiratory_infection_prediction/blob/main/images/sc2_p3.png)
 
-3. Prediction for SC1 and TimePoint 24 (Phase 3) using KNN algorithm with STPE Approach. Use features selected by fisher_score selection method with XGB Wrapper.
+3. Prediction for SC1 and TimePoint 24 (Phase 3) using KNN algorithm with STPE Approach. Use features selected by gini index selection method with KNN Wrapper.
 ```bash
 python run_STP.py --SC 1 --algorithm KNN --uptoTimePoint 24 --useSelectedFeatures True --fs_method fisher_score --fs_wrapper XGB
 ```
 ![SC2_P3_fisherscore](https://github.com/yeisik/respiratory_infection_prediction/blob/main/images/sc1_p3_fisher.png)
 
-4. Prediction for SC3 and TimePoint 0 (Phase 1) using LinearSVR regressor with STPE Approach. Use pre-optimized hyper-parameters for regressor.
-```bash
-python run_STP.py --SC 3 --algorithm LinearSVR --uptoTimePoint 0 --useHyperParameters True
-```
-![SC3_P1](https://github.com/yeisik/respiratory_infection_prediction/blob/main/images/sc3_p1.png)
